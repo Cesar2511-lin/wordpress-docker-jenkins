@@ -5,7 +5,7 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                git 'https://github.com/TU_USUARIO/wordpress-docker-jenkins.git'
+                git 'https://github.com/Cesar2511-lin/wordpress-docker-jenkins.git'
             }
         }
 
