@@ -1,50 +1,25 @@
-# WordPress + MySQL + Jenkins CI/CD on Docker 🐳
+# WordPress, MySQL, and Jenkins on Docker
 
-A modular, containerized continuous deployment pipeline that provisions a WordPress CMS, dedicated MySQL 8.0 instance, and a Jenkins automation server orchestrated via Docker Compose.
+Docker Compose configuration to run a local development environment with WordPress, MySQL 8.0, and a Jenkins automation server.
 
----
+## Services
 
-## 🏗️ Architecture
+- `mysql`: Database service (MySQL 8.0) using environment variables from `.env`.
+- `wordpress`: WordPress application connected to the MySQL service on port 8080.
+- `jenkins`: Jenkins automation server on port 8081.
 
-```
-                      +-------------------+
-                      |   Docker Engine   |
-                      +---------+---------+
-                                |
-          +---------------------+---------------------+
-          |                     |                     |
-+---------v---------+ +---------v---------+ +---------v---------+
-|     Jenkins CI    | |    WordPress CMS  | |     MySQL 8.0     |
-|   (Automation)    | |     (Port 8080)   | |    (Port 3306)    |
-+-------------------+ +-------------------+ +-------------------+
-```
+## Setup
 
-## 🚀 Quickstart
-
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/Cesar2511-lin/wordpress-docker-jenkins.git
-   cd wordpress-docker-jenkins
-   ```
-
-2. **Configure environment variables**:
+1. Copy `.env.example` to `.env`:
    ```bash
    cp .env.example .env
-   # Update passwords in .env with your credentials
    ```
-
-3. **Deploy services**:
+2. Set passwords in `.env`.
+3. Start the containers:
    ```bash
    docker compose up -d
    ```
 
-4. **Access endpoints**:
-   - WordPress: `http://localhost:8080`
-   - MySQL: `localhost:3306`
+## Security
 
----
-
-## 🛡️ Security Best Practices
-- Never commit active `.env` files to source control.
-- Ensure volume mounts for persistent database storage (`mysql_data`).
-- Network isolation across multi-tier service boundaries.
+Do not commit `.env` with actual passwords to source control. The `.gitignore` file is configured to exclude local environment files.
